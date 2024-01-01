@@ -32,7 +32,7 @@ export default function Home() {
           }}
           onInit={(typewriter) => {
             typewriter
-              .typeString("I'm Program")
+              .typeString("I'm a Program")
               .pauseFor(300)
               .deleteChars(4)
               .typeString("grammer")
