@@ -7,6 +7,7 @@ import Home from './pages/home.tsx'
 import './index.css'
 import { ThemeProvider } from './components/theme-provider.tsx'
 import Profile from './pages/profile.tsx'
+import Hobby from './pages/hobby.tsx'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/hobby",
-        element: <Home />
+        element: <Hobby />
       },
       {
         path: "/articles",
