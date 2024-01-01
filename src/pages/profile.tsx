@@ -1,6 +1,7 @@
 import { Timeline } from "@/components/timeline/timeline";
 import { TimelineItemProps } from "@/components/timeline/timeline-item";
 import { GraduationCap } from "lucide-react";
+import { useDocumentTitle } from "usehooks-ts";
 
 const timelineItems: TimelineItemProps[] = [
   {
@@ -30,6 +31,8 @@ const timelineItems: TimelineItemProps[] = [
 ];
 
 export default function Profile() {
+  useDocumentTitle("Rizky Fauzi Ilmi - Profile");
+  
   return (
     <div className="p-5 w-screen md:w-full overflow-y-auto">
       <h3 className="flex items-center gap-2 scroll-m-20 mb-2 text-2xl font-semibold tracking-tight">
