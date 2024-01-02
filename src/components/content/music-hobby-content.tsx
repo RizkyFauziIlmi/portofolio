@@ -1,4 +1,5 @@
 import {
+  Dot,
   Music,
   Pause,
   Play,
@@ -17,10 +18,13 @@ import { toast } from "sonner";
 import { VideoData, videoUrls } from "@/constant/data/video";
 import { MusicList } from "../music/music-list";
 import { detikKeStringWaktu } from "@/lib/time";
+import { cn } from "@/lib/utils";
 
 export const MusicHobbyContent = () => {
+  const isFirstRender = useRef(true);
   const play = useBoolean(true);
   const seek = useBoolean(false);
+  const repeat = useBoolean(false);
   const playerRef = useRef<ReactPlayer>(null);
   const [progressState, setProgressState] = useState<OnProgressProps>({
     loaded: 0,
@@ -79,31 +83,63 @@ export const MusicHobbyContent = () => {
     play.setTrue();
   };
 
+  const handleOnEnded = () => {
+    if (repeat.value) {
+      handleSeekChange(0);
+      return;
+    }
+
+    handleSkipForward();
+  };
+
   useEffect(() => {
-    // This code will run after currentVideoIndex is updated
-    toast(`Now playing: ${videoUrls[currentVideoIndex].title}`, {
-      description: `By ${videoUrls[currentVideoIndex].artist}`,
-      cancel: {
-        label: "Prev",
-        onClick: handleSkipBack,
-      },
-      action: {
-        label: "Next",
-        onClick: handleSkipForward,
-      },
-      icon: <Music />,
-      dismissible: true,
-      position: "top-right",
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!isFirstRender.current) {
+      // This code will run after currentVideoIndex is updated
+      toast(`Now playing: ${videoUrls[currentVideoIndex].title}`, {
+        description: `By ${videoUrls[currentVideoIndex].artist}`,
+        cancel: {
+          label: "Prev",
+          onClick: handleSkipBack,
+        },
+        action: {
+          label: "Next",
+          onClick: handleSkipForward,
+        },
+        icon: <Music />,
+        dismissible: true,
+        position: "top-right",
+      });
+    }
   }, [currentVideoIndex]);
+
+  useEffect(() => {
+    if (isFirstRender.current && !repeat.value) {
+      isFirstRender.current = false;
+    } else {
+      if (repeat.value) {
+        toast("Repeat song activated!", {
+          cancel: {
+            label: "Cancel",
+            onClick: repeat.setFalse,
+          },
+        });
+      } else {
+        toast("Repeat song Deactivated!", {
+          cancel: {
+            label: "Cancel",
+            onClick: repeat.setTrue,
+          },
+        });
+      }
+    }
+  }, [repeat.setFalse, repeat.setTrue, repeat.value]);
 
   return (
     <div className="h-screen relative w-full flex flex-col justify-between">
       <ReactPlayer
         ref={playerRef}
         url={videoUrls[currentVideoIndex].link}
-        onEnded={handleSkipForward}
+        onEnded={handleOnEnded}
         onError={() => handleSkipForward()}
         controls={false}
         playing={play.value}
@@ -184,8 +220,15 @@ export const MusicHobbyContent = () => {
               <SkipForward />
             </Button>
           </div>
-          <Button onClick={() => toast("ok")} size="icon" variant="ghost">
-            <Repeat />
+          <Button
+            onClick={repeat.toggle}
+            size="icon"
+            variant="ghost"
+            className="flex flex-col"
+          >
+            <Repeat
+              className={cn(repeat.value ? "text-primary" : "text-muted")}
+            />
           </Button>
         </div>
       </div>
