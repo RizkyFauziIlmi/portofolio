@@ -18,11 +18,13 @@ import { VideoData, videoUrls } from "@/constant/data/video";
 import { MusicList } from "../music/music-list";
 import { detikKeStringWaktu } from "@/lib/time";
 import { cn } from "@/lib/utils";
+import { getRandomVideo } from "@/lib/random";
 
 export const MusicHobbyContent = () => {
   const isFirstRender = useRef(true);
   const play = useBoolean(true);
   const seek = useBoolean(false);
+  const shuffle = useBoolean(false);
   const repeat = useBoolean(false);
   const playerRef = useRef<ReactPlayer>(null);
   const [progressState, setProgressState] = useState<OnProgressProps>({
@@ -51,15 +53,24 @@ export const MusicHobbyContent = () => {
   };
 
   const handleSkipBack = () => {
+    if (Math.floor(progressState.playedSeconds) !== 0) {
+      handleSeekChange(0);
+      return;
+    }
+
     setCurrentVideoIndex((prevIndex) =>
       prevIndex === 0 ? videoUrls.length - 1 : prevIndex - 1
     );
+
+    play.setTrue();
   };
 
   const handleSkipForward = () => {
     setCurrentVideoIndex((prevIndex) =>
       prevIndex === videoUrls.length - 1 ? 0 : prevIndex + 1
     );
+
+    play.setTrue();
   };
 
   const findIndexByLink = (array: VideoData[], searchLink: string): number => {
@@ -85,10 +96,15 @@ export const MusicHobbyContent = () => {
   const handleOnEnded = () => {
     if (repeat.value) {
       handleSeekChange(0);
-      return;
+    } else if (shuffle.value) {
+      let randomVideo = getRandomVideo(videoUrls);
+      while (randomVideo.video.link === videoUrls[currentVideoIndex].link) {
+        randomVideo = getRandomVideo(videoUrls);
+      }
+      setCurrentVideoIndex(randomVideo.index);
+    } else {
+      handleSkipForward();
     }
-
-    handleSkipForward();
   };
 
   useEffect(() => {
@@ -107,27 +123,58 @@ export const MusicHobbyContent = () => {
         icon: <Music />,
         dismissible: true,
         position: "top-right",
+        duration: 3000,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVideoIndex]);
+
+  useEffect(() => {
+    if (!isFirstRender.current) {
+      if (shuffle.value) {
+        toast("Song shuffle is enabled!", {
+          cancel: {
+            label: "Disable shuffle",
+            onClick: shuffle.setFalse,
+          },
+          position: "bottom-right",
+          duration: 3000,
+        });
+      } else {
+        toast("Song shuffle is disabled!", {
+          action: {
+            label: "Enable shuffle",
+            onClick: shuffle.setTrue,
+          },
+          position: "bottom-right",
+          duration: 3000,
+        });
+      }
+    }
+  }, [shuffle.setFalse, shuffle.setTrue, shuffle.value]);
 
   useEffect(() => {
     if (isFirstRender.current && !repeat.value) {
       isFirstRender.current = false;
+      return;
     } else {
       if (repeat.value) {
-        toast("Song Repeat Activated!", {
+        toast("Song repeat is enabled!", {
           cancel: {
-            label: "Cancel",
+            label: "Disable Repeat",
             onClick: repeat.setFalse,
           },
+          position: "bottom-right",
+          duration: 3000,
         });
       } else {
-        toast("Song Repeat Deactivated!", {
-          cancel: {
-            label: "Cancel",
+        toast("Song repeat is disabled", {
+          action: {
+            label: "Enable Repeat",
             onClick: repeat.setTrue,
           },
+          position: "bottom-right",
+          duration: 3000,
         });
       }
     }
@@ -205,8 +252,19 @@ export const MusicHobbyContent = () => {
           </p>
         </div>
         <div className="w-full flex justify-between mt-4">
-          <Button onClick={handleSkipBack} size="icon" variant="ghost">
-            <Shuffle />
+          <Button
+            onClick={() => {
+              if (repeat.value) {
+                repeat.setFalse();
+              }
+              shuffle.toggle();
+            }}
+            size="icon"
+            variant="ghost"
+          >
+            <Shuffle
+              className={cn(shuffle.value ? "text-primary" : "text-muted")}
+            />
           </Button>
           <div className="flex gap-4">
             <Button onClick={handleSkipBack} size="icon" variant="ghost">
@@ -220,10 +278,15 @@ export const MusicHobbyContent = () => {
             </Button>
           </div>
           <Button
-            onClick={repeat.toggle}
+            onClick={() => {
+              if (shuffle.value) {
+                shuffle.setFalse();
+              }
+
+              repeat.toggle();
+            }}
             size="icon"
             variant="ghost"
-            className="flex flex-col"
           >
             <Repeat
               className={cn(repeat.value ? "text-primary" : "text-muted")}

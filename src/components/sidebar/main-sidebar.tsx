@@ -57,7 +57,7 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
     <div
       className={cn(
         theme === "light" && "border-r-2",
-        !isMobile ? "hidden md:block w-[20%]" : "w-full",
+        !isMobile ? "hidden md:block sm:w-[25%] md:w-[25%] lg:w-[20%]" : "w-full",
         "p-4 h-full overflow-hidden bg-primary-foreground"
       )}
     >

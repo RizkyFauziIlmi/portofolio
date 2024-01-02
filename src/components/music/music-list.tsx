@@ -24,16 +24,16 @@ export const MusicList = ({
 
   useEffect(() => {
     if (musicRef.current && value.link === videoUrls[currentVideoIndex].link) {
-        musicRef.current.scrollIntoView({ behavior: "smooth" });
+      musicRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVideoIndex]);
 
   return (
     <div
       ref={musicRef}
       key={`${index}${value.link}`}
-      className="flex justify-between items-center p-2 rounded-sm text-white hover:bg-black/80 transition-all"
+      className="flex justify-between items-center p-2 rounded-sm text-white hover:bg-black/80 hover:scale-[101%] group transition-all"
     >
       <div className="flex gap-2">
         <img
@@ -45,11 +45,7 @@ export const MusicList = ({
           <h3 className="scroll-m-20 text-md md:text-xl font-semibold tracking-tight">
             {value.title}
           </h3>
-          <p className="leading-7 text-sm">
-            {Array.isArray(value.artist)
-              ? value.artist.join(", ")
-              : value.artist}
-          </p>
+          <p className="leading-7 text-sm">{value.artist}</p>
           {value.link === videoUrls[currentVideoIndex].link && (
             <p className="text-sm flex items-center gap-2 mt-1 text-muted-foreground">
               <Disc3
@@ -65,7 +61,11 @@ export const MusicList = ({
       </div>
 
       {value.link === videoUrls[currentVideoIndex].link && play.value ? (
-        <Button size="icon" variant="ghost" onClick={play.toggle}>
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={play.toggle}
+        >
           <Pause />
         </Button>
       ) : (
@@ -73,6 +73,7 @@ export const MusicList = ({
           size="icon"
           variant="ghost"
           onClick={() => handleNotSelectedSongButtonClick(value)}
+          className="md:group-hover:text-white md:text-muted"
         >
           <Play />
         </Button>
