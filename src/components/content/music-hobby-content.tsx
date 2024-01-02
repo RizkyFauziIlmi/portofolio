@@ -1,5 +1,4 @@
 import {
-  Dot,
   Music,
   Pause,
   Play,
@@ -117,14 +116,14 @@ export const MusicHobbyContent = () => {
       isFirstRender.current = false;
     } else {
       if (repeat.value) {
-        toast("Repeat song activated!", {
+        toast("Song Repeat Activated!", {
           cancel: {
             label: "Cancel",
             onClick: repeat.setFalse,
           },
         });
       } else {
-        toast("Repeat song Deactivated!", {
+        toast("Song Repeat Deactivated!", {
           cancel: {
             label: "Cancel",
             onClick: repeat.setTrue,
