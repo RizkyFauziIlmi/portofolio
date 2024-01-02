@@ -2,7 +2,7 @@ export interface VideoData {
   title: string;
   description?: string;
   link: string;
-  artist: string | string[];
+  artist: string;
   thumbnail: string;
 }
 
@@ -124,34 +124,41 @@ export const videoUrls: VideoData[] = [
     thumbnail:
       "https://i.ytimg.com/vi/rfWRkrhN2bA/hq720.jpg?sqp=-oaymwE2COgCEMoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhiIGIoYjAP&rs=AOn4CLAFH9RqGU86S9jclBA5G-8KspiCRg",
     link: "https://www.youtube.com/watch?v=rfWRkrhN2bA",
-    artist: ["Tulus", "Yovie", "Glenn"],
+    artist: "Yovie Tulus Glenn",
   },
   {
-    title: "TULUS - Cahaya (Official Lyric Video)",
+    title: "TheOvertunes - Bicara ft. Monita Tahalea",
     thumbnail:
-      "https://i.ytimg.com/vi/-BgPEiLABtQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZkpl3Y-hp6sd_wo7-AEEs7iekjQ",
-    link: "https://www.youtube.com/watch?v=-BgPEiLABtQ",
-    artist: "Tulus",
+      "https://i.ytimg.com/vi/IaYU0HQtiH8/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBRv_zLR1GQU6jNCCU3oxrM5fhckA",
+    link: "https://www.youtube.com/watch?v=IaYU0HQtiH8",
+    artist: "TheOvertunes",
   },
   {
-    title: "TULUS - Cahaya (Official Lyric Video)",
+    title: "TheOvertunes - I Still Love You (Acoustic Version)",
     thumbnail:
-      "https://i.ytimg.com/vi/-BgPEiLABtQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZkpl3Y-hp6sd_wo7-AEEs7iekjQ",
-    link: "https://www.youtube.com/watch?v=-BgPEiLABtQ",
-    artist: "Tulus",
+      "https://i.ytimg.com/vi/-LLJ_Ywt1zE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD0_9ci0aoA2D5Y0FDntXkfywXy7w",
+    link: "https://www.youtube.com/watch?v=-LLJ_Ywt1zE",
+    artist: "TheOvertunes",
   },
   {
-    title: "TULUS - Cahaya (Official Lyric Video)",
+    title: "Juicy Luicy - Lantas (Official Lyric Video)",
     thumbnail:
-      "https://i.ytimg.com/vi/-BgPEiLABtQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZkpl3Y-hp6sd_wo7-AEEs7iekjQ",
-    link: "https://www.youtube.com/watch?v=-BgPEiLABtQ",
-    artist: "Tulus",
+      "https://i.ytimg.com/vi/ba-XAIskH_g/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD4JMZ-9sveU5ALpeEAdBdJ9kewnA",
+    link: "https://www.youtube.com/watch?v=ba-XAIskH_g",
+    artist: "Juicy Luicy",
   },
   {
-    title: "TULUS - Cahaya (Official Lyric Video)",
+    title: "Juicy Luicy - Tampar (Official Lyric Video)",
     thumbnail:
-      "https://i.ytimg.com/vi/-BgPEiLABtQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZkpl3Y-hp6sd_wo7-AEEs7iekjQ",
-    link: "https://www.youtube.com/watch?v=-BgPEiLABtQ",
-    artist: "Tulus",
+      "https://i.ytimg.com/vi/qmgA_WejI8w/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDB4Oa7CtiVWL6G1W9bwaNjicK-2w",
+    link: "https://www.youtube.com/watch?v=qmgA_WejI8w",
+    artist: "Juicy Luicy",
+  },
+  {
+    title: "Juicy Luicy - Tanpa Tergesa (Official Music Video)",
+    thumbnail:
+      "https://i.ytimg.com/vi/tUUW5QAdAKk/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB5v7SydQtjv8AQRQjLulmEKjH4BA",
+    link: "https://www.youtube.com/watch?v=tUUW5QAdAKk",
+    artist: "Juicy Luicy",
   },
 ];

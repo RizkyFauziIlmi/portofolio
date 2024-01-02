@@ -13,15 +13,14 @@ import { useBoolean } from "usehooks-ts";
 import { Button } from "../ui/button";
 import { useEffect, useRef, useState } from "react";
 import { OnProgressProps } from "react-player/base";
-import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { VideoData, videoUrls } from "@/constant/data/video";
 import { MusicList } from "../music/music-list";
+import { detikKeStringWaktu } from "@/lib/time";
 
 export const MusicHobbyContent = () => {
   const play = useBoolean(true);
   const seek = useBoolean(false);
-  const audioOnly = useBoolean(true);
   const playerRef = useRef<ReactPlayer>(null);
   const [progressState, setProgressState] = useState<OnProgressProps>({
     loaded: 0,
@@ -29,6 +28,7 @@ export const MusicHobbyContent = () => {
     played: 0,
     playedSeconds: 0,
   });
+  const [duration, setDuration] = useState<number>(0);
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -82,11 +82,7 @@ export const MusicHobbyContent = () => {
   useEffect(() => {
     // This code will run after currentVideoIndex is updated
     toast(`Now playing: ${videoUrls[currentVideoIndex].title}`, {
-      description: `By ${
-        Array.isArray(videoUrls[currentVideoIndex].artist)
-          ? videoUrls[currentVideoIndex].artist.join(", ")
-          : videoUrls[currentVideoIndex].artist
-      }`,
+      description: `By ${videoUrls[currentVideoIndex].artist}`,
       cancel: {
         label: "Prev",
         onClick: handleSkipBack,
@@ -122,6 +118,7 @@ export const MusicHobbyContent = () => {
             }));
           }
         }}
+        onDuration={(duration) => setDuration(duration)}
         style={{
           position: "absolute",
           top: 0,
@@ -164,6 +161,14 @@ export const MusicHobbyContent = () => {
           step={0.0001}
           className="mt-6"
         />
+        <div className="flex justify-between mt-2">
+          <p className="text-sm text-muted-foreground">
+            {detikKeStringWaktu(Math.floor(progressState.playedSeconds))}
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {detikKeStringWaktu(duration)}
+          </p>
+        </div>
         <div className="w-full flex justify-between mt-4">
           <Button onClick={handleSkipBack} size="icon" variant="ghost">
             <Shuffle />
