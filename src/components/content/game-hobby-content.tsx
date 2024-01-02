@@ -108,7 +108,7 @@ export const GameHobbyContent = () => {
   }, [apiMobileGame]);
 
   return (
-    <div className="w-full mt-4">
+    <div className="p-5 w-full mt-4">
       <h3 className="scroll-m-20 mb-1 text-2xl font-semibold tracking-tight flex items-center gap-1">
         <PcCase /> PC
       </h3>

@@ -8,9 +8,9 @@ export default function Hobby() {
   useDocumentTitle("Rizky Fauzi Ilmi - Hobby");
 
   return (
-    <div className="p-5 w-screen md:w-full h-full overflow-y-auto">
-      <Tabs defaultValue="game" className="w-full">
-        <TabsList>
+    <div className="w-screen md:w-full h-full overflow-y-auto">
+      <Tabs defaultValue="game" className="w-full h-full">
+        <TabsList className="mx-5">
           <TabsTrigger value="game">
             <Gamepad2 className="h-4 w-4 mr-2" /> Game
           </TabsTrigger>
@@ -21,7 +21,7 @@ export default function Hobby() {
         <TabsContent value="game">
           <GameHobbyContent />
         </TabsContent>
-        <TabsContent value="music">
+        <TabsContent value="music" className="h-full  bg-blue-600">
           <MusicHobbyContent />
         </TabsContent>
       </Tabs>
