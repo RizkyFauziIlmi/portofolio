@@ -19,6 +19,7 @@ import { MusicList } from "../music/music-list";
 import { detikKeStringWaktu } from "@/lib/time";
 import { cn } from "@/lib/utils";
 import { getRandomVideo } from "@/lib/random";
+import { motion } from "framer-motion";
 
 export const MusicHobbyContent = () => {
   const isFirstRender = useRef(true);
@@ -211,7 +212,12 @@ export const MusicHobbyContent = () => {
         width="100%"
         height="100%"
       />
-      <div className="z-30 w-full overflow-auto bg-black/70 p-4 flex flex-col gap-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ type: "spring", duration: 0.8 }}
+        className="z-30 w-full overflow-auto bg-black/70 p-4 flex flex-col gap-4"
+      >
         {videoUrls.map((value, index) => (
           <MusicList
             key={`${index}:${value.link}`}
@@ -222,7 +228,7 @@ export const MusicHobbyContent = () => {
             value={value}
           />
         ))}
-      </div>
+      </motion.div>
       <div className="px-4 py-2 sticky bottom-0 bg-primary-foreground z-40">
         <div>
           <h4 className="scroll-m-20 text-md md:text-lg font-semibold tracking-tight">
