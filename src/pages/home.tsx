@@ -17,6 +17,7 @@ export default function Home() {
   useDocumentTitle("Rizky Fauzi Ilmi - Home");
   const [init, setInit] = useState<boolean>(false);
   const { theme } = useTheme();
+  const isDarkSystem = window.matchMedia("(prefers-color-scheme: dark)").matches
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -30,15 +31,24 @@ export default function Home() {
     console.log(container);
   };
 
+  const particleOptions =
+    theme === "dark"
+      ? particleOptionsDark
+      : theme === "light"
+      ? particleOptionsLight
+      : theme === "system" && isDarkSystem
+      ? particleOptionsDark
+      : theme === "system" && !isDarkSystem
+      ? particleOptionsLight
+      : undefined;
+
   return (
     <div className="h-full w-screen relative md:w-full flex items-center justify-center overflow-hidden">
       {init && (
         <Particles
           id="tsparticles"
           particlesLoaded={particlesLoaded}
-          options={
-            theme === "dark" ? particleOptionsDark : particleOptionsLight
-          }
+          options={particleOptions}
         />
       )}
       <motion.div
