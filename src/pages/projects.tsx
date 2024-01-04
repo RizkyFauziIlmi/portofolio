@@ -75,7 +75,7 @@ export default function Projects() {
 
   return (
     <div className="p-5 w-screen md:w-full h-screen overflow-hidden">
-      <div className="h-1/6 mb-2">
+      <div className="h-1/6 md:mb-2">
         <div className="flex justify-between">
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             Projects
