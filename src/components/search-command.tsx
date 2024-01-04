@@ -1,11 +1,9 @@
 import {
-  Settings,
   Folder,
   Wrench,
   UserCircle2,
   Home,
   Gamepad,
-  Book,
   Globe,
 } from "lucide-react";
 
@@ -32,51 +30,46 @@ export const SearchCommand = ({ setOpen }: SearchCommandProps) => {
   const handleClick = (to: string) => {
     setOpen(false);
     close();
-    navigate(to)
-  }
+    navigate(to);
+  };
 
   return (
-    <Command
-      className="rounded-lg border shadow-md"
-    >
+    <Command className="rounded-lg border shadow-md">
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Suggestions">
-          <CommandItem onSelect={() => handleClick("/profile")}>
+          <CommandItem value="profile" onSelect={(value) => handleClick(value)}>
             <UserCircle2 className="mr-2 h-4 w-4" />
             <span>profile</span>
           </CommandItem>
-          <CommandItem onSelect={() => handleClick("/projects")}>
+          <CommandItem value="projects" onSelect={(value) => handleClick(value)}>
             <Folder className="mr-2 h-4 w-4" />
             <span>projects</span>
           </CommandItem>
-          <CommandItem onSelect={() => handleClick("/skills")}>
+          <CommandItem value="skills" onSelect={(value) => handleClick(value)}>
             <Wrench className="mr-2 h-4 w-4" />
             <span>skills</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Other">
-          <CommandItem onSelect={() => handleClick("/")}>
+          <CommandItem value="/" onSelect={(value) => handleClick(value)}>
             <Home className="mr-2 h-4 w-4" />
             <span>home</span>
           </CommandItem>
-          <CommandItem onSelect={() => handleClick("/hobby")}>
+          <CommandItem value="hobby" onSelect={(value) => handleClick(value)}>
             <Gamepad className="mr-2 h-4 w-4" />
             <span>hobby</span>
           </CommandItem>
-          <CommandItem onSelect={() => handleClick("/articles")}>
-            <Book className="mr-2 h-4 w-4" />
-            <span>articles</span>
-          </CommandItem>
-          <CommandItem onSelect={() => handleClick("/network")}>
+          <CommandItem
+            onSelect={() => {
+              setOpen(false);
+              close();
+            }}
+          >
             <Globe className="mr-2 h-4 w-4" />
             <span>network</span>
-          </CommandItem>
-          <CommandItem onSelect={() => handleClick("/settings")}>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>settings</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>
