@@ -4,6 +4,17 @@ import { useTheme } from "../theme-provider";
 import { useSheet } from "@/hooks/use-sheet";
 
 import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import {
+  ArrowDown,
   Folder,
   Gamepad,
   Globe,
@@ -19,7 +30,12 @@ import { CommandShortcut } from "../ui/command";
 import { Separator } from "../ui/separator";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { SearchCommand } from "../search-command";
-import React from "react";
+import { useEffect, useState } from "react";
+import IconGithub from "../svg/github-svg";
+import IconLinkedin from "../svg/linkedin-svg";
+import IconGmail from "../svg/gmail-svg";
+import IconWhatsapp from "../svg/whatsapp-svg";
+import IconInstagram from "../svg/instagram-svg";
 
 interface MainSidebarProps {
   isMobile?: boolean;
@@ -29,7 +45,7 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
   const location = useLocation();
   const { theme } = useTheme();
   const { close } = useSheet();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const isHomeRoute = location.pathname === "/";
   const isThisProfileRoute = location.pathname === "/profile";
@@ -37,7 +53,7 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
   const isProjectsRoute = location.pathname === "/projects";
   const isSkillsRoute = location.pathname === "/skills";
 
-  React.useEffect(() => {
+  useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -151,13 +167,76 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
               </Button>
             </Link>
             <Separator />
-            <Button
-              className="w-full flex gap-4 justify-start pl-2"
-              variant="ghost"
-            >
-              <Globe />
-              Network
-            </Button>
+            <Drawer>
+              <DrawerTrigger>
+                <Button
+                  className="w-full flex gap-4 justify-start pl-2"
+                  variant="ghost"
+                >
+                  <Globe />
+                  Network
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Get in Touch</DrawerTitle>
+                  <DrawerDescription>
+                    Feel free to reach out to me for collaboration, project
+                    inquiries, or just to say hello! I'm always open to new
+                    opportunities and discussions. Use the contact options below
+                    to connect with me directly. Looking forward to hearing from
+                    you!
+                  </DrawerDescription>
+                </DrawerHeader>
+                <div className="w-full flex flex-wrap justify-center items-center gap-2 py-4">
+                  <Link
+                    to="https://github.com/RizkyFauziIlmi"
+                    replace
+                    target="_blank"
+                  >
+                    <Button variant="outline" size="lg">
+                      <IconGithub className="h-6 w-6 mr-2" /> Github
+                    </Button>
+                  </Link>
+                  <Link
+                    to="https://www.linkedin.com/in/rizky-fauzi-ilmi-b473a4257"
+                    replace
+                    target="_blank"
+                  >
+                    <Button variant="outline" size="lg">
+                      <IconLinkedin className="h-6 w-6 mr-2" /> Linkedin
+                    </Button>
+                  </Link>
+                  <Link to="mailto:rizkyfauziilmi@gmail.com">
+                    <Button variant="outline" size="lg">
+                      <IconGmail className="h-6 w-6 mr-2" /> Email
+                    </Button>
+                  </Link>
+                  <Link to="https://wa.link/9rw4kd" replace target="_blank">
+                    <Button variant="outline" size="lg">
+                      <IconWhatsapp className="h-6 w-6 mr-2" /> Whatsapp
+                    </Button>
+                  </Link>
+                  <Link
+                    to="https://www.instagram.com/fauzirizkyw/"
+                    replace
+                    target="_blank"
+                  >
+                    <Button variant="outline" size="lg">
+                      <IconInstagram className="h-6 w-6 mr-2" /> Instagram
+                    </Button>
+                  </Link>
+                </div>
+                <DrawerFooter>
+                  <DrawerClose>
+                    <Button variant="outline" className="w-full">
+                      <ArrowDown className="h-4 w-4 mr-2" /> Close
+                    </Button>
+                  </DrawerClose>
+                </DrawerFooter>
+              </DrawerContent>
+            </Drawer>
+
             <Separator />
           </div>
         </div>
