@@ -9,7 +9,6 @@ import {
   Globe,
   Home,
   Search,
-  Settings,
   UserCircle2,
   Wrench,
   X,
@@ -37,7 +36,6 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
   const isHobbyRoute = location.pathname === "/hobby";
   const isProjectsRoute = location.pathname === "/projects";
   const isSkillsRoute = location.pathname === "/skills";
-  const isNetworkRoute = location.pathname === "/network";
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
