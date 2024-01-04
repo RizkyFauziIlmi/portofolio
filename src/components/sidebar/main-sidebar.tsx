@@ -4,13 +4,11 @@ import { useTheme } from "../theme-provider";
 import { useSheet } from "@/hooks/use-sheet";
 
 import {
-  Book,
   Folder,
   Gamepad,
   Globe,
   Home,
   Search,
-  Settings,
   UserCircle2,
   Wrench,
   X,
@@ -36,10 +34,8 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
   const isHomeRoute = location.pathname === "/";
   const isThisProfileRoute = location.pathname === "/profile";
   const isHobbyRoute = location.pathname === "/hobby";
-  const isArticlesRoute = location.pathname === "/articles";
   const isProjectsRoute = location.pathname === "/projects";
   const isSkillsRoute = location.pathname === "/skills";
-  const isNetworkRoute = location.pathname === "/network";
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -57,7 +53,9 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
     <div
       className={cn(
         theme === "light" && "border-r-2",
-        !isMobile ? "hidden md:block sm:w-[25%] md:w-[25%] lg:w-[20%]" : "w-full",
+        !isMobile
+          ? "hidden md:block sm:w-[25%] md:w-[25%] lg:w-[20%]"
+          : "w-full",
         "p-4 h-full overflow-hidden bg-primary-foreground"
       )}
     >
@@ -125,19 +123,6 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
                 Hobby
               </Button>
             </Link>
-            <Link to="/articles">
-              <Button
-                className={cn(
-                  isArticlesRoute && "bg-muted",
-                  "w-full flex gap-4 justify-start pl-2"
-                )}
-                variant="ghost"
-                onClick={close}
-              >
-                <Book />
-                Articles
-              </Button>
-            </Link>
             <Separator />
             <Link to="/projects">
               <Button
@@ -166,29 +151,16 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
               </Button>
             </Link>
             <Separator />
-            <Link to="/network">
-              <Button
-                className={cn(
-                  isNetworkRoute && "bg-muted",
-                  "w-full flex gap-4 justify-start pl-2"
-                )}
-                variant="ghost"
-                onClick={close}
-              >
-                <Globe />
-                Network
-              </Button>
-            </Link>
+            <Button
+              className="w-full flex gap-4 justify-start pl-2"
+              variant="ghost"
+            >
+              <Globe />
+              Network
+            </Button>
             <Separator />
           </div>
         </div>
-        <Button
-          className="w-full flex gap-4 justify-start pl-2"
-          variant="ghost"
-        >
-          <Settings />
-          Settings
-        </Button>
       </div>
       <Button
         variant="ghost"

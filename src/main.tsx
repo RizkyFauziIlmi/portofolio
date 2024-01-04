@@ -40,10 +40,6 @@ const router = createBrowserRouter([
         path: "/skills",
         element: <Skills />
       },
-      {
-        path: "/network",
-        element: <Home />
-      },
     ]
   }
 ])
