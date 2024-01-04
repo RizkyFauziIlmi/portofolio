@@ -9,6 +9,7 @@ import { ThemeProvider } from './components/theme-provider.tsx'
 import Profile from './pages/profile.tsx'
 import Hobby from './pages/hobby.tsx'
 import Projects from './pages/projects.tsx'
+import Skills from './pages/skills.tsx'
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/skills",
-        element: <Home />
+        element: <Skills />
       },
       {
         path: "/network",
