@@ -67,7 +67,7 @@ export default function Home() {
   useEffect(() => {
     verifyPortofolio();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [session?.user.id]);
 
   return (
     <div className="md:h-full w-screen relative md:w-full flex items-center justify-center">
