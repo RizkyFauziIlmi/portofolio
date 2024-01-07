@@ -10,6 +10,7 @@ import Profile from './pages/profile.tsx'
 import Hobby from './pages/hobby.tsx'
 import Projects from './pages/projects.tsx'
 import Skills from './pages/skills.tsx'
+import Login from './pages/login.tsx'
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: "/skills",
         element: <Skills />
       },
+      {
+        path: "/login",
+        element: <Login />
+      }
     ]
   }
 ])

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
 import { useDocumentTitle } from "usehooks-ts";
@@ -6,18 +6,26 @@ import { type Container } from "@tsparticles/engine";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
 import { particleOptionsDark, particleOptionsLight } from "@/config/particles";
 import { useTheme } from "@/components/theme-provider";
+import { supabase } from "@/database/db";
+import { useSession } from "@/hooks/use-session";
+import { cn } from "@/lib/utils";
+import { VerifiedAvatar } from "@/components/content/verified-avatar";
 
 export default function Home() {
   useDocumentTitle("Rizky Fauzi Ilmi - Home");
   const [init, setInit] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const { session } = useSession();
   const { theme } = useTheme();
-  const isDarkSystem = window.matchMedia("(prefers-color-scheme: dark)").matches
+  const isDarkSystem = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -42,8 +50,27 @@ export default function Home() {
       ? particleOptionsLight
       : undefined;
 
+  const verifyPortofolio = async () => {
+    if (session) {
+      const user = session.user.user_metadata;
+      await supabase.from("verified").insert({
+        user_id: session.user.id,
+        email: user.email,
+        full_name: user.full_name,
+        image_url: user.avatar_url,
+      });
+    } else {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    verifyPortofolio();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="h-full w-screen relative md:w-full flex items-center justify-center overflow-hidden">
+    <div className="md:h-full w-screen relative md:w-full flex items-center justify-center">
       {init && (
         <Particles
           id="tsparticles"
@@ -91,6 +118,13 @@ export default function Home() {
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-all duration-300" />
             </Button>
           </Link>
+          <Button
+            className={cn(session && "hidden")}
+            onClick={() => navigate("/login")}
+          >
+            <Check className="h-4 w-4 mr-2" /> Verified this Portofolio
+          </Button>
+          <VerifiedAvatar />
         </div>
         <div className="w-fit">
           <Avatar className="w-52 h-52">
