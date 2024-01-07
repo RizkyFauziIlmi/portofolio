@@ -1,4 +1,4 @@
-import { Book, Folder, Gamepad, Globe, Home, User, Wrench } from "lucide-react";
+import { Book, DoorClosed, Folder, Gamepad, Globe, Home, User, Wrench } from "lucide-react";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -10,6 +10,7 @@ const iconMap: Record<string, React.ReactElement> = {
   projects: <Folder className="h-4 w-4" />,
   skills: <Wrench className="h-4 w-4" />,
   network: <Globe className="h-4 w-4" />,
+  login: <DoorClosed className="h-4 w-4" />
 };
 
 const Breadcrumbs = () => {
