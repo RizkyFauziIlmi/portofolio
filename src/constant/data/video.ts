@@ -150,15 +150,8 @@ export const videoUrls: VideoData[] = [
   {
     title: "Edcoustic - Muhasabah Cinta",
     thumbnail:
-      "https://i.ytimg.com/vi/BwR9oFngvXE/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCZisRNmjpadj_1it4ET9auErB65g",
-    link: "https://www.youtube.com/watch?v=BwR9oFngvXE",
-    artist: "Edcoustic",
-  },
-  {
-    title: "Inteam feat. Edcoustic - Kau Ditakdirkan Untukku",
-    thumbnail:
-      "https://i.ytimg.com/vi/BwR9oFngvXE/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCZisRNmjpadj_1it4ET9auErB65g",
-    link: "https://www.youtube.com/watch?v=BwR9oFngvXE",
+      "https://i.ytimg.com/vi/gE8OfuiUG5Y/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBDIgLJeu0trwPw8PpRKGE90UxA0A",
+    link: "https://www.youtube.com/watch?v=gE8OfuiUG5Y",
     artist: "Edcoustic",
   },
   {
@@ -371,4 +364,123 @@ export const videoUrls: VideoData[] = [
     link: "https://www.youtube.com/watch?v=t7MBzMP4OzY",
     artist: "Yorushika",
   },
+  {
+    title: "RADWIMPS - 前前前世",
+    thumbnail:
+      "https://i.ytimg.com/vi/PDSkFeMVNFs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA-muWzD__vXswWnpMUHqARcJ0rWQ",
+    link: "https://www.youtube.com/watch?v=PDSkFeMVNFs",
+    artist: "RADWIMPS",
+  },
+  {
+    title: "スパークル - Your name",
+    thumbnail:
+      "https://i.ytimg.com/vi/a2GujJZfXpg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBM4bnWZ6ZkFkb4Q17Mz8y6IwI-RA",
+    link: "https://www.youtube.com/watch?v=a2GujJZfXpg",
+    artist: "RADWIMPS",
+  },
+  {
+    title: "RADWIMPS - 愛にできることはまだあるかい",
+    thumbnail:
+      "https://i.ytimg.com/vi/EQ94zflNqn4/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhTIGMoZTAP&rs=AOn4CLAlGPxdHa0kok88H5nbDyxro0yvWQ",
+    link: "https://www.youtube.com/watch?v=EQ94zflNqn4",
+    artist: "RADWIMPS",
+  },
+  {
+    title: "back number - 水平線",
+    thumbnail:
+      "https://i.ytimg.com/vi/iqEr3P78fz8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD9A75t1VtVJA2YMNgvc0bY40A5eQ",
+    link: "https://www.youtube.com/watch?v=iqEr3P78fz8",
+    artist: "back number",
+  },
+  {
+    title: "back number - 高嶺の花子さん",
+    thumbnail:
+      "https://i.ytimg.com/vi/SII-S-zCg-c/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCCzJtQgSugLHujdPx3TB-ZK1wcGA",
+    link: "https://www.youtube.com/watch?v=SII-S-zCg-c",
+    artist: "back number",
+  },
+  {
+    title: "back number - クリスマスソング",
+    thumbnail:
+      "https://i.ytimg.com/vi/7zBeQezaz4U/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCGkx179WbgtMwUEd32o0DdEJ1Tmw",
+    link: "https://www.youtube.com/watch?v=7zBeQezaz4U",
+    artist: "back number",
+  },
+  {
+    title: "back number - ハッピーエンド",
+    thumbnail:
+      "https://i.ytimg.com/vi/T8y_RsF4TSw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB3MsZftthzNfQ-5pk4HrLFd1ReQg",
+    link: "https://www.youtube.com/watch?v=T8y_RsF4TSw",
+    artist: "back number",
+  },
+  {
+    title: "back number - HAPPY BIRTHDAY",
+    thumbnail:
+      "https://i.ytimg.com/vi/IsFs06cw-gY/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLApUy8DTlHrQmYeagsRhSlipP9Hww",
+    link: "https://www.youtube.com/watch?v=IsFs06cw-gY",
+    artist: "back number",
+  },
+  {
+    title: "back number - ヒロイン",
+    thumbnail:
+      "https://i.ytimg.com/vi/VPZK72W4Xxw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCNBjxgngWvipjkv3Ffx5SaFzfmGw",
+    link: "https://www.youtube.com/watch?v=VPZK72W4Xxw",
+    artist: "back number",
+  },
+  {
+    title: "back number / Phantom thief",
+    thumbnail:
+      "https://i.ytimg.com/vi/1DPldNasDgY/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDCuKWfCC4VASWll7py7scsJVZZDg",
+    link: "https://www.youtube.com/watch?v=1DPldNasDgY",
+    artist: "back number",
+  },  
+  {
+    title: "back number - 瞬き",
+    thumbnail:
+      "https://i.ytimg.com/vi/h-KuoHHjGRs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAHeiEonDT8Eky3gcdfbp4OkKo5dg",
+    link: "https://www.youtube.com/watch?v=h-KuoHHjGRs",
+    artist: "back number",
+  },  
+  {
+    title: "back number - アイラブユ",
+    thumbnail:
+      "https://i.ytimg.com/vi/_k0mJYct4UE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB236KYOwjQqiPjEE08zom_leH0MQ",
+    link: "https://www.youtube.com/watch?v=_k0mJYct4UE",
+    artist: "back number",
+  },  
+  {
+    title: "back number - 花束",
+    thumbnail:
+      "https://i.ytimg.com/vi/meZPD28Y7xE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBWWjbVppXs69UE-03T4knG9jLmWQ",
+    link: "https://www.youtube.com/watch?v=meZPD28Y7xE",
+    artist: "back number",
+  },  
+  {
+    title: "back number - オールドファッション",
+    thumbnail:
+      "https://i.ytimg.com/vi/l0B0js0wCK8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgwqi871zojdLLusAcHmXIwfmJNg",
+    link: "https://www.youtube.com/watch?v=l0B0js0wCK8",
+    artist: "back number",
+  },  
+  {
+    title: "back number - 黄色",
+    thumbnail:
+      "https://i.ytimg.com/vi/EMYa07zHC9w/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAD4b-eZ-7mGbJ-lcvsjiIjy6F0Dw",
+    link: "https://www.youtube.com/watch?v=EMYa07zHC9w",
+    artist: "back number",
+  },  
+  {
+    title: "back number - 恋",
+    thumbnail:
+      "https://i.ytimg.com/vi/ZWdYxQz4UqE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBGiekHG_aiqK7nUyMIjnP68tOhhg",
+    link: "https://www.youtube.com/watch?v=ZWdYxQz4UqE",
+    artist: "back number",
+  },  
+  {
+    title: "back number - わたがし",
+    thumbnail:
+      "https://i.ytimg.com/vi/uy_BaRBJIzQ/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBuo1kUXRyJsZOglfiiSvXay4nNrQ",
+    link: "https://www.youtube.com/watch?v=uy_BaRBJIzQ",
+    artist: "back number",
+  },  
 ];
