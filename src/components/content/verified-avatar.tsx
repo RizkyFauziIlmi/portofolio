@@ -12,12 +12,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
-import { Check, Smile } from "lucide-react";
+import { Smile } from "lucide-react";
 import { useSession } from "@/hooks/use-session";
-import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { VerifiedUserList } from "./verifed-user-list";
 
-interface User {
+export interface User {
   created_at: string;
   email: string | null;
   full_name: string | null;
@@ -83,7 +83,9 @@ export const VerifiedAvatar = () => {
                 }
               })}
               {data.length > 3 && (
-                <p className="ml-4 dark:text-muted">{data.length - 3} more ...</p>
+                <p className="ml-4 dark:text-muted">
+                  {data.length - 3} more ...
+                </p>
               )}
             </div>
           </DialogTrigger>
@@ -97,33 +99,11 @@ export const VerifiedAvatar = () => {
               </DialogDescription>
               <ScrollArea className="h-[200px]">
                 {data.map((value) => (
-                  <div
+                  <VerifiedUserList
                     key={value.user_id}
-                    className={cn(
-                      value.user_id === session?.user.id &&
-                        "bg-primary-foreground",
-                      "p-2 rounded-md flex items-center gap-2 mt-2"
-                    )}
-                  >
-                    <Avatar>
-                      <AvatarImage
-                        src={value.image_url as string}
-                        alt={value.full_name as string}
-                      />
-                      <AvatarFallback>
-                        {createAvatarFallback(value.full_name as string)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex flex-col items-start">
-                      <p className="text-sm flex items-center gap-1">
-                        {value.email}{" "}
-                        {value.user_id === session?.user.id && (
-                          <Check className="w-4 h-4" />
-                        )}
-                      </p>
-                      <p className="text-xs">{value.full_name}</p>
-                    </div>
-                  </div>
+                    session={session}
+                    value={value}
+                  />
                 ))}
               </ScrollArea>
             </DialogHeader>
