@@ -18,6 +18,8 @@ import IconTypescript from "@/components/svg/typescript-svg";
 import { useDocumentTitle } from "usehooks-ts";
 import { motion } from "framer-motion";
 import IconGolang from "@/components/svg/golang-svg";
+import { FlowAppButton } from "@/components/content/flow-app-button";
+import { Folder, Globe } from "lucide-react";
 
 export default function Skills() {
   useDocumentTitle("Rizky Fauzi Ilmi - Skills");
@@ -219,6 +221,17 @@ export default function Skills() {
           </div>
         </div>
       </motion.div>
+      <FlowAppButton
+        containerClassName="pt-5"
+        leftTitle="Projects"
+        leftDescription="see what I'm working on"
+        leftIcon={<Folder />}
+        leftRoute="/projects"
+        rightTitle="Network"
+        rightDescription="see all the contacts you can contact"
+        rightIcon={<Globe />}
+        
+      />
     </div>
   );
 }

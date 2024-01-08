@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Github, LayoutTemplate } from "lucide-react";
+import { Gamepad, Github, LayoutTemplate, Wrench } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useDocumentTitle } from "usehooks-ts";
 import {
@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { AnimatePresence, motion } from "framer-motion";
+import { FlowAppButton } from "@/components/content/flow-app-button";
 
 export default function Projects() {
   useDocumentTitle("Rizky Fauzi Ilmi - Projects");
@@ -74,7 +75,7 @@ export default function Projects() {
       : Projects.filter((value) => value.category === selectedCategory);
 
   return (
-    <div className="p-5 w-screen md:w-full h-screen overflow-hidden">
+    <div className="p-5 w-screen md:w-full h-full overflow-auto">
       <div className="h-1/6 md:mb-2">
         <div className="flex justify-between">
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
@@ -95,12 +96,12 @@ export default function Projects() {
             </SelectContent>
           </Select>
         </div>
-        <h4 className="scroll-m-20 text-lg dark:text-muted font-semibold tracking-tight mt-6">
+        <h4 className="scroll-m-20 text-lg text-muted-foreground font-semibold tracking-tight mt-6">
           {category} ({filteredProjects.length})
         </h4>
       </div>
       <Separator />
-      <div className="overflow-y-auto h-5/6">
+      <div className="overflow-y-auto h-4/6">
         <AnimatePresence>
           {filteredProjects.map((value) => (
             <motion.div
@@ -146,6 +147,17 @@ export default function Projects() {
           ))}
         </AnimatePresence>
       </div>
+      <FlowAppButton
+        containerClassName="p-5"
+        leftTitle="Hobby"
+        leftDescription="see at the games and music that I like"
+        leftIcon={<Gamepad />}
+        leftRoute="/hobby"
+        rightTitle="Skills"
+        rightDescription="see what my skills are"
+        rightIcon={<Wrench />}
+        rightRoute="/skills"
+      />
     </div>
   );
 }

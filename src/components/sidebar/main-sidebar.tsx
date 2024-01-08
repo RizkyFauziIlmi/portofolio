@@ -36,6 +36,7 @@ import IconLinkedin from "../svg/linkedin-svg";
 import IconGmail from "../svg/gmail-svg";
 import IconWhatsapp from "../svg/whatsapp-svg";
 import IconInstagram from "../svg/instagram-svg";
+import { useDrawer } from "@/hooks/use-drawer";
 
 interface MainSidebarProps {
   isMobile?: boolean;
@@ -45,6 +46,7 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
   const location = useLocation();
   const { theme } = useTheme();
   const { close } = useSheet();
+  const drawer = useDrawer();
   const [open, setOpen] = useState(false);
 
   const isHomeRoute = location.pathname === "/";
@@ -167,8 +169,8 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
               </Button>
             </Link>
             <Separator />
-            <Drawer>
-              <DrawerTrigger>
+            <Drawer open={drawer.isOpen} onRelease={drawer.close}>
+              <DrawerTrigger onClick={drawer.open}>
                 <Button
                   className="w-full flex gap-4 justify-start pl-2"
                   variant="ghost"
@@ -229,7 +231,7 @@ export const MainSidebar = ({ isMobile = false }: MainSidebarProps) => {
                 </div>
                 <DrawerFooter>
                   <DrawerClose>
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full" onClick={drawer.close}>
                       <ArrowDown className="h-4 w-4 mr-2" /> Close
                     </Button>
                   </DrawerClose>
