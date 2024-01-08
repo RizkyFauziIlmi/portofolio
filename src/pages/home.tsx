@@ -81,7 +81,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, translateY: window.innerHeight }}
         animate={{ opacity: 1, translateY: 0 }}
-        transition={{ type: "spring", duration: 0.8 }}
+        transition={{ duration: 0.8 }}
         className="flex md:flex-row flex-col-reverse items-center justify-center gap-4 md:mx-4"
       >
         <div className="flex flex-col w-[60%] items-start justify-center gap-2">
