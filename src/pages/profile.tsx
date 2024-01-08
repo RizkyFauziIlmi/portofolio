@@ -52,7 +52,7 @@ export default function Profile() {
         leftDescription="see the home page"
         leftIcon={<Home />}
         leftRoute="/"
-        rightTitle="Home"
+        rightTitle="Hobby"
         rightDescription="see at the games and music that I like"
         rightIcon={<Gamepad />}
         rightRoute="/hobby"
