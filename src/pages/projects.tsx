@@ -96,7 +96,7 @@ export default function Projects() {
             </SelectContent>
           </Select>
         </div>
-        <h4 className="scroll-m-20 text-lg dark:text-muted font-semibold tracking-tight mt-6">
+        <h4 className="scroll-m-20 text-lg text-muted-foreground font-semibold tracking-tight mt-6">
           {category} ({filteredProjects.length})
         </h4>
       </div>

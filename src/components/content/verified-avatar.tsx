@@ -63,7 +63,7 @@ export const VerifiedAvatar = () => {
       <div className="flex w-full justify-center md:justify-start items-center my-4">
         <Dialog>
           <DialogTrigger className="flex flex-col md:flex-row items-center gap-2 text-sm">
-            <p className="dark:text-muted font-semibold">Verified by</p>
+            <p className="text-muted-foreground font-semibold">Verified by</p>
             <div className="flex items-center">
               {shuffleArray(data).map((value, index) => {
                 if (index < 3) {
@@ -83,7 +83,7 @@ export const VerifiedAvatar = () => {
                 }
               })}
               {data.length > 3 && (
-                <p className="ml-4 dark:text-muted">
+                <p className="ml-4 text-muted-foreground">
                   {data.length - 3} more ...
                 </p>
               )}
