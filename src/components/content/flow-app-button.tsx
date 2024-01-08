@@ -45,10 +45,10 @@ export const FlowAppButton = ({
         <ChevronLeft className="group-hover:-translate-x-1 transition-all" />
         {leftIcon}
         <div className="flex flex-col items-start">
-          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          <h4 className="scroll-m-20 text-md md:text-lg font-semibold tracking-tight">
             {leftTitle}
           </h4>
-          <p className="text-sm text-muted-foreground">{leftDescription}</p>
+          <p className="text-xs md:text-sm text-muted-foreground">{leftDescription}</p>
         </div>
       </Button>
       <Button
@@ -63,10 +63,10 @@ export const FlowAppButton = ({
         }}
       >
         <div className="flex flex-col items-end">
-          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          <h4 className="scroll-m-20 text-md md:text-lg font-semibold tracking-tight">
             {rightTitle}
           </h4>
-          <p className="text-sm text-muted-foreground">{rightDescription}</p>
+          <p className="text-xs md:text-sm text-muted-foreground">{rightDescription}</p>
         </div>
         {rightIcon}
         <ChevronRight className="group-hover:translate-x-1 transition-all" />
