@@ -12,9 +12,18 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Gamepad2, Headphones, Speaker, Volume2 } from "lucide-react";
+import {
+  Folder,
+  Gamepad2,
+  Headphones,
+  Speaker,
+  UserCircle2,
+  Volume2,
+} from "lucide-react";
 import { useDocumentTitle } from "usehooks-ts";
 import { useState } from "react";
+import { FlowAppButton } from "@/components/content/flow-app-button";
+import { cn } from "@/lib/utils";
 
 export default function Hobby() {
   useDocumentTitle("Rizky Fauzi Ilmi - Hobby");
@@ -22,7 +31,7 @@ export default function Hobby() {
 
   return (
     <div className="w-screen md:w-full h-full overflow-y-auto">
-      <Tabs value={tabState} className="w-full h-full">
+      <Tabs value={tabState}>
         <TabsList className="mx-5">
           <TabsTrigger value="game" onClick={() => setTabState("game")}>
             <Gamepad2 className="h-4 w-4 mr-2" /> Game
@@ -58,6 +67,17 @@ export default function Hobby() {
           <MusicHobbyContent />
         </TabsContent>
       </Tabs>
+      <FlowAppButton
+        containerClassName={cn(tabState === "music" && "hidden", "p-5 w-full")}
+        leftTitle="Profile"
+        leftDescription="see about me"
+        leftIcon={<UserCircle2 />}
+        leftRoute="/profile"
+        rightTitle="Projects"
+        rightDescription="see what I'm working on"
+        rightIcon={<Folder />}
+        rightRoute="/projects"
+      />
     </div>
   );
 }

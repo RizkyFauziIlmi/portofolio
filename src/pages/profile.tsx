@@ -1,6 +1,7 @@
+import { FlowAppButton } from "@/components/content/flow-app-button";
 import { Timeline } from "@/components/timeline/timeline";
 import { TimelineItemProps } from "@/components/timeline/timeline-item";
-import { GraduationCap } from "lucide-react";
+import { Gamepad, GraduationCap, Home } from "lucide-react";
 import { useDocumentTitle } from "usehooks-ts";
 
 const timelineItems: TimelineItemProps[] = [
@@ -32,7 +33,7 @@ const timelineItems: TimelineItemProps[] = [
 
 export default function Profile() {
   useDocumentTitle("Rizky Fauzi Ilmi - Profile");
-  
+
   return (
     <div className="p-5 w-screen md:w-full overflow-y-auto">
       <h3 className="flex items-center gap-2 scroll-m-20 mb-2 text-2xl font-semibold tracking-tight">
@@ -45,6 +46,16 @@ export default function Profile() {
             isCurrent: index === array.length - 1, // Tambahkan isCurrent berdasarkan index terakhir
           };
         })}
+      />
+      <FlowAppButton
+        leftTitle="Home"
+        leftDescription="see the home page"
+        leftIcon={<Home />}
+        leftRoute="/"
+        rightTitle="Home"
+        rightDescription="see at the games and music that I like"
+        rightIcon={<Gamepad />}
+        rightRoute="/hobby"
       />
     </div>
   );
