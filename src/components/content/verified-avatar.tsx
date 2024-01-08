@@ -34,13 +34,9 @@ export const VerifiedAvatar = () => {
     const { data } = await supabase.from("verified").select("*");
 
     setData(data);
-  };
-
-  useEffect(() => {
-    getData();
-
     if (
-      data?.filter((value) => value.user_id === session?.user.id).length !== 0
+      data?.filter((value) => value.user_id === session?.user.id).length ||
+      0 !== 0
     ) {
       toast(
         <div className="flex items-center gap-2">
@@ -52,6 +48,11 @@ export const VerifiedAvatar = () => {
         }
       );
     }
+  };
+
+  useEffect(() => {
+    getData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user.id]);
 
