@@ -12,12 +12,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "../ui/scroll-area";
-import { Check, Smile } from "lucide-react";
+import { Smile } from "lucide-react";
 import { useSession } from "@/hooks/use-session";
-import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { VerifiedUserList } from "./verifed-user-list";
 
-interface User {
+export interface User {
   created_at: string;
   email: string | null;
   full_name: string | null;
@@ -34,24 +34,27 @@ export const VerifiedAvatar = () => {
     const { data } = await supabase.from("verified").select("*");
 
     setData(data);
-  };
-
-  useEffect(() => {
-    getData();
-
     if (
-      data?.filter((value) => value.user_id === session?.user.id).length !== 0
+      data?.filter((value) => value.user_id === session?.user.id).length ||
+      0 !== 0
     ) {
       toast(
         <div className="flex items-center gap-2">
           <Smile />
-          <p>Thank you for supporting me!</p>
+          <p>
+            Thank you {session?.user.user_metadata.full_name} for supporting me!
+          </p>
         </div>,
         {
           duration: 2000,
         }
       );
     }
+  };
+
+  useEffect(() => {
+    getData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user.id]);
 
@@ -59,8 +62,8 @@ export const VerifiedAvatar = () => {
     return (
       <div className="flex w-full justify-center md:justify-start items-center my-4">
         <Dialog>
-          <DialogTrigger className="flex flex-col md:flex-row items-center gap-2">
-            <p className="text-muted">Verified by</p>
+          <DialogTrigger className="flex flex-col md:flex-row items-center gap-2 text-sm">
+            <p className="dark:text-muted font-semibold">Verified by</p>
             <div className="flex items-center">
               {shuffleArray(data).map((value, index) => {
                 if (index < 3) {
@@ -80,7 +83,9 @@ export const VerifiedAvatar = () => {
                 }
               })}
               {data.length > 3 && (
-                <p className="ml-4 text-muted">{data.length - 3} more ...</p>
+                <p className="ml-4 dark:text-muted">
+                  {data.length - 3} more ...
+                </p>
               )}
             </div>
           </DialogTrigger>
@@ -94,33 +99,11 @@ export const VerifiedAvatar = () => {
               </DialogDescription>
               <ScrollArea className="h-[200px]">
                 {data.map((value) => (
-                  <div
+                  <VerifiedUserList
                     key={value.user_id}
-                    className={cn(
-                      value.user_id === session?.user.id &&
-                        "bg-primary-foreground",
-                      "p-2 rounded-md flex items-center gap-2 mt-2"
-                    )}
-                  >
-                    <Avatar>
-                      <AvatarImage
-                        src={value.image_url as string}
-                        alt={value.full_name as string}
-                      />
-                      <AvatarFallback>
-                        {createAvatarFallback(value.full_name as string)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex flex-col items-start">
-                      <p className="text-sm flex items-center gap-1">
-                        {value.email}{" "}
-                        {value.user_id === session?.user.id && (
-                          <Check className="w-4 h-4" />
-                        )}
-                      </p>
-                      <p className="text-xs">{value.full_name}</p>
-                    </div>
-                  </div>
+                    session={session}
+                    value={value}
+                  />
                 ))}
               </ScrollArea>
             </DialogHeader>
