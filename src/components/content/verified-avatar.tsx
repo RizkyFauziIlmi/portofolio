@@ -41,7 +41,9 @@ export const VerifiedAvatar = () => {
       toast(
         <div className="flex items-center gap-2">
           <Smile />
-          <p>Thank you for supporting me!</p>
+          <p>
+            Thank you {session?.user.user_metadata.full_name} for supporting me!
+          </p>
         </div>,
         {
           duration: 2000,
