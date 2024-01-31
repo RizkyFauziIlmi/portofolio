@@ -132,7 +132,7 @@ export const MusicHobbyContent = () => {
   };
 
   useEffect(() => {
-    if (!isFirstRender.current && isTourFinish) {
+    if (!isFirstRender.current) {
       // This code will run after currentVideoIndex is updated
       toast(`Now playing: ${videoUrls[currentVideoIndex].title}`, {
         description: `By ${videoUrls[currentVideoIndex].artist}`,
@@ -154,7 +154,7 @@ export const MusicHobbyContent = () => {
   }, [currentVideoIndex]);
 
   useEffect(() => {
-    if (!isFirstRender.current && isTourFinish) {
+    if (!isFirstRender.current) {
       if (shuffle.value) {
         toast("Song shuffle is enabled!", {
           cancel: {
@@ -179,7 +179,7 @@ export const MusicHobbyContent = () => {
   }, [shuffle.setFalse, shuffle.setTrue, shuffle.value]);
 
   useEffect(() => {
-    if (isFirstRender.current && !repeat.value && isTourFinish) {
+    if (isFirstRender.current && !repeat.value) {
       isFirstRender.current = false;
       return;
     } else {
