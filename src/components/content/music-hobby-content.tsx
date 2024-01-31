@@ -67,6 +67,16 @@ export const MusicHobbyContent = () => {
   };
 
   const handleSkipForward = () => {
+    // if shuffle on next song will ignore
+    if (shuffle.value) {
+      let randomVideo = getRandomVideo(videoUrls);
+      while (randomVideo.video.link === videoUrls[currentVideoIndex].link) {
+        randomVideo = getRandomVideo(videoUrls);
+      }
+      setCurrentVideoIndex(randomVideo.index);
+      return;
+    }
+
     setCurrentVideoIndex((prevIndex) =>
       prevIndex === videoUrls.length - 1 ? 0 : prevIndex + 1
     );
