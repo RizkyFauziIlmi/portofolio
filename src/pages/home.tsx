@@ -16,6 +16,7 @@ import { supabase } from "@/database/db";
 import { useSession } from "@/hooks/use-session";
 import { cn } from "@/lib/utils";
 import { VerifiedAvatar } from "@/components/content/verified-avatar";
+import { isDarkSystem } from "@/lib/theme";
 
 export default function Home() {
   useDocumentTitle("Rizky Fauzi Ilmi - Home");
@@ -23,9 +24,6 @@ export default function Home() {
   const navigate = useNavigate();
   const { session } = useSession();
   const { theme } = useTheme();
-  const isDarkSystem = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {

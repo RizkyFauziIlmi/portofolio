@@ -20,10 +20,13 @@ import { detikKeStringWaktu } from "@/lib/time";
 import { cn } from "@/lib/utils";
 import { getRandomVideo } from "@/lib/random";
 import { motion } from "framer-motion";
+import { useTour } from "@reactour/tour";
+import { usePlay } from "@/hooks/use-play";
 
 export const MusicHobbyContent = () => {
+  const { setIsOpen, isOpen, currentStep } = useTour();
   const isFirstRender = useRef(true);
-  const play = useBoolean(true);
+  const play = usePlay();
   const seek = useBoolean(false);
   const shuffle = useBoolean(false);
   const repeat = useBoolean(false);
@@ -36,6 +39,16 @@ export const MusicHobbyContent = () => {
   });
   const [duration, setDuration] = useState<number>(0);
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const isTourFinish = !isOpen && currentStep === 5;
+
+  useEffect(() => {
+    if (!isTourFinish) {
+      setIsOpen(true);
+    } else {
+      play.setTrue();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (bottomRef.current) {
@@ -67,7 +80,7 @@ export const MusicHobbyContent = () => {
   };
 
   const handleSkipForward = () => {
-    // if shuffle on next song will ignore
+    // if shuffle on, next song will ignore
     if (shuffle.value) {
       let randomVideo = getRandomVideo(videoUrls);
       while (randomVideo.video.link === videoUrls[currentVideoIndex].link) {
@@ -119,7 +132,7 @@ export const MusicHobbyContent = () => {
   };
 
   useEffect(() => {
-    if (!isFirstRender.current) {
+    if (!isFirstRender.current && isTourFinish) {
       // This code will run after currentVideoIndex is updated
       toast(`Now playing: ${videoUrls[currentVideoIndex].title}`, {
         description: `By ${videoUrls[currentVideoIndex].artist}`,
@@ -141,7 +154,7 @@ export const MusicHobbyContent = () => {
   }, [currentVideoIndex]);
 
   useEffect(() => {
-    if (!isFirstRender.current) {
+    if (!isFirstRender.current && isTourFinish) {
       if (shuffle.value) {
         toast("Song shuffle is enabled!", {
           cancel: {
@@ -162,10 +175,11 @@ export const MusicHobbyContent = () => {
         });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shuffle.setFalse, shuffle.setTrue, shuffle.value]);
 
   useEffect(() => {
-    if (isFirstRender.current && !repeat.value) {
+    if (isFirstRender.current && !repeat.value && isTourFinish) {
       isFirstRender.current = false;
       return;
     } else {
@@ -189,6 +203,7 @@ export const MusicHobbyContent = () => {
         });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [repeat.setFalse, repeat.setTrue, repeat.value]);
 
   return (
@@ -226,7 +241,7 @@ export const MusicHobbyContent = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ type: "spring", duration: 0.8 }}
-        className="z-30 w-full overflow-auto bg-black/70 p-4 flex flex-col gap-4"
+        className="z-30 w-full overflow-auto bg-black/70 p-4 flex flex-col gap-4 music-list"
       >
         {videoUrls.map((value, index) => (
           <MusicList
@@ -239,7 +254,7 @@ export const MusicHobbyContent = () => {
           />
         ))}
       </motion.div>
-      <div className="px-4 py-2 sticky bottom-0 bg-primary-foreground z-40">
+      <div className="px-4 py-2 sticky bottom-0 bg-primary-foreground z-40 music-player">
         <div>
           <h4 className="scroll-m-20 text-md md:text-lg font-semibold tracking-tight">
             {videoUrls[currentVideoIndex].title}
@@ -257,7 +272,7 @@ export const MusicHobbyContent = () => {
           onValueCommit={() => seek.setFalse()}
           max={1}
           step={0.0001}
-          className="mt-6"
+          className="mt-6 music-duration"
         />
         <div className="flex justify-between mt-2">
           <p className="text-sm text-muted-foreground">
@@ -277,12 +292,15 @@ export const MusicHobbyContent = () => {
             }}
             size="icon"
             variant="ghost"
+            className="shuffle-button"
           >
             <Shuffle
-              className={cn(shuffle.value ? "text-primary" : "text-muted")}
+              className={cn(
+                shuffle.value ? "text-primary" : "text-muted-foreground"
+              )}
             />
           </Button>
-          <div className="flex gap-4">
+          <div className="flex gap-4 control-buttons">
             <Button onClick={handleSkipBack} size="icon" variant="ghost">
               <SkipBack />
             </Button>
@@ -303,9 +321,12 @@ export const MusicHobbyContent = () => {
             }}
             size="icon"
             variant="ghost"
+            className="repeat-button"
           >
             <Repeat
-              className={cn(repeat.value ? "text-primary" : "text-muted")}
+              className={cn(
+                repeat.value ? "text-primary" : "text-muted-foreground"
+              )}
             />
           </Button>
         </div>
