@@ -2,15 +2,15 @@ import { VideoData, videoUrls } from "@/constant/data/video";
 import { cn } from "@/lib/utils";
 import { Disc3, Pause, Play } from "lucide-react";
 import { Button } from "../ui/button";
-import { UseBooleanOutput } from "@/types";
 import { useEffect, useRef } from "react";
+import { PlayState } from "@/hooks/use-play";
 
 interface MusicListProps {
   value: VideoData;
   index: number;
   currentVideoIndex: number;
   handleNotSelectedSongButtonClick: (value: VideoData) => void;
-  play: UseBooleanOutput;
+  play: PlayState;
 }
 
 export const MusicList = ({
@@ -61,11 +61,7 @@ export const MusicList = ({
       </div>
 
       {value.link === videoUrls[currentVideoIndex].link && play.value ? (
-        <Button
-          size="icon"
-          variant="ghost"
-          onClick={play.toggle}
-        >
+        <Button size="icon" variant="ghost" onClick={play.toggle}>
           <Pause />
         </Button>
       ) : (
@@ -73,7 +69,6 @@ export const MusicList = ({
           size="icon"
           variant="ghost"
           onClick={() => handleNotSelectedSongButtonClick(value)}
-          className="md:group-hover:text-white md:text-muted"
         >
           <Play />
         </Button>
