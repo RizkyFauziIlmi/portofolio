@@ -73,7 +73,7 @@ export const MusicHobbyContent = () => {
     }
 
     setCurrentVideoIndex((prevIndex) =>
-      prevIndex === 0 ? videoUrls.length - 1 : prevIndex - 1
+      prevIndex === 0 ? videoUrls.length - 1 : prevIndex - 1,
     );
 
     play.setTrue();
@@ -82,7 +82,9 @@ export const MusicHobbyContent = () => {
   const handleSkipForward = () => {
     // if shuffle on, next song will ignore
     if (shuffle.value) {
+      // get random video
       let randomVideo = getRandomVideo(videoUrls);
+      // if random video is same with current video, get another random video
       while (randomVideo.video.link === videoUrls[currentVideoIndex].link) {
         randomVideo = getRandomVideo(videoUrls);
       }
@@ -91,7 +93,7 @@ export const MusicHobbyContent = () => {
     }
 
     setCurrentVideoIndex((prevIndex) =>
-      prevIndex === videoUrls.length - 1 ? 0 : prevIndex + 1
+      prevIndex === videoUrls.length - 1 ? 0 : prevIndex + 1,
     );
 
     play.setTrue();
@@ -254,7 +256,7 @@ export const MusicHobbyContent = () => {
           />
         ))}
       </motion.div>
-      <div className="px-4 py-2 sticky bottom-0 bg-primary-foreground z-40 music-player">
+      <div className="px-4 py-2 sticky bottom-0 bg-popover z-40 music-player">
         <div>
           <h4 className="scroll-m-20 text-md md:text-lg font-semibold tracking-tight">
             {videoUrls[currentVideoIndex].title}
@@ -296,7 +298,7 @@ export const MusicHobbyContent = () => {
           >
             <Shuffle
               className={cn(
-                shuffle.value ? "text-primary" : "text-muted-foreground"
+                shuffle.value ? "text-primary" : "text-muted-foreground",
               )}
             />
           </Button>
@@ -325,7 +327,7 @@ export const MusicHobbyContent = () => {
           >
             <Repeat
               className={cn(
-                repeat.value ? "text-primary" : "text-muted-foreground"
+                repeat.value ? "text-primary" : "text-muted-foreground",
               )}
             />
           </Button>
