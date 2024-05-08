@@ -1,3 +1,9 @@
+/**
+ * Creates an avatar fallback based on the given name.
+ * 
+ * @param name - The name to create the avatar fallback from.
+ * @returns The avatar fallback string.
+ */
 export const createAvatarFallback = (name: string): string => {
   // Menghilangkan spasi pada awal dan akhir nama
   name = name.trim();
